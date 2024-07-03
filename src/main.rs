@@ -1,7 +1,7 @@
 use std::{
-    fmt::{format, Result},
+    fmt::{Result},
     fs,
-    io::{prelude, BufRead, BufReader, Write},
+    io::{BufRead, BufReader, Write},
     net::{TcpListener, TcpStream},
     thread,
     time::Duration,
@@ -11,7 +11,7 @@ use http_server_rust::ThreadPool;
 
 fn main() {
     let listener = TcpListener::bind("0.0.0.0:3000").expect("could not bind");
-    let pool = ThreadPool::new(4);
+    let pool = ThreadPool::new(20);
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
